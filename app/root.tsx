@@ -1,29 +1,25 @@
-import { useState } from 'react'
 import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node'
+import { useState } from 'react'
 import { json } from '@remix-run/node'
 import { Form, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react'
 import {
-	Anchor,
 	AppShell,
 	Avatar,
 	Burger,
 	Button,
-	Center,
-	Footer,
 	Group,
 	Header,
 	MediaQuery,
 	Navbar,
-	Text,
 	Title,
-	UnstyledButton,
 	useMantineTheme,
 } from '@mantine/core'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { ListNumbers, Settings, User } from 'tabler-icons-react'
 
 import { getUser } from './session.server'
-import NavItem from "~/components/layout/NavItem";
+
+import NavItem from '~/components/layout/NavItem'
 
 export const meta: MetaFunction = () => ({
 	charset: 'utf-8',
@@ -79,8 +75,8 @@ export default () => {
 						showNav ? (
 							<Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
 								<Navbar.Section>
-									<NavItem label="Simulations" icon={<ListNumbers />} to="/simulations"/>
-									<NavItem label="Settings" icon={<Settings />} to="/settings"/>
+									<NavItem label="Simulations" icon={<ListNumbers />} to="/simulations" />
+									<NavItem label="Settings" icon={<Settings />} to="/settings" />
 								</Navbar.Section>
 							</Navbar>
 						) : undefined

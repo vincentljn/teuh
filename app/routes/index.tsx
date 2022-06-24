@@ -1,11 +1,7 @@
-import { Anchor, Button, Card, Container, Image, Space, Title, useMantineTheme } from '@mantine/core'
+import { Anchor, Button, Card, Container, Image, Space, Title } from '@mantine/core'
 import { Link } from 'react-router-dom'
 
 export default function Index() {
-	const theme = useMantineTheme()
-
-	const secondaryColor = theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7]
-
 	return (
 		<Container>
 			<Card shadow="sm" p="lg">
