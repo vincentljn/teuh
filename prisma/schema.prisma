@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String       @id @default(cuid())
+  email       String       @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  password    Password?
+  simulations Simulation[]
+}
+
+model Password {
+  hash   String
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Simulation {
+    id              Int         @id @default(autoincrement())
+    name            String?     @unique
+    jobId           Int
+    job             Job         @relation(fields: [jobId], references: [id], onDelete: Cascade)
+    experienceId    Int
+    experience      Experience  @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+    seniorityId     Int
+    seniority       Seniority   @relation(fields: [seniorityId], references: [id], onDelete: Cascade)
+    salary          Int
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    userId          String
+    user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Job {
+    id          Int             @id @default(autoincrement())
+    name        String
+    value       Float
+    order       Int             @unique
+    simulations Simulation[]
+    createdAt   DateTime        @default(now())
+    updatedAt   DateTime        @updatedAt
+}
+
+model Experience {
+    id          Int             @id @default(autoincrement())
+    name        String
+    value       Float
+    order       Int             @unique
+    simulations Simulation[]
+    createdAt   DateTime        @default(now())
+    updatedAt   DateTime        @updatedAt
+}
+
+model Seniority {
+    id          Int             @id @default(autoincrement())
+    name        String
+    value       Float
+    order       Int             @unique
+    simulations Simulation[]
+    createdAt   DateTime        @default(now())
+    updatedAt   DateTime        @updatedAt
+}
