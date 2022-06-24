@@ -1,0 +1,46 @@
+{
+  "name": "remix-template-vercel",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "setup": "prisma migrate dev && prisma db seed"
+  },
+  "dependencies": {
+    "@mantine/core": "^4.2.6",
+    "@mantine/form": "^4.2.6",
+    "@mantine/hooks": "^4.2.6",
+    "@mantine/ssr": "^4.2.6",
+    "@prisma/client": "^3.14.0",
+    "@remix-run/node": "^1.5.1",
+    "@remix-run/react": "^1.5.1",
+    "@remix-run/vercel": "^1.5.1",
+    "@vercel/node": "^1.15.2",
+    "bcryptjs": "^2.4.3",
+    "joi": "^17.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.3.0",
+    "tabler-icons-react": "^1.48.1",
+    "tiny-invariant": "^1.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.5.1",
+    "@remix-run/eslint-config": "^1.5.1",
+    "@remix-run/serve": "^1.5.1",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.17",
+    "eslint": "^8.15.0",
+    "prettier": "^2.6.2",
+    "prisma": "^3.14.0",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "prisma": {
+    "seed": "ts-node --require tsconfig-paths/register prisma/seed.ts"
+  }
+}
