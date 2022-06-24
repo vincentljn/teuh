@@ -1,7 +1,25 @@
+import type { Simulation } from '@prisma/client'
+import type { LoaderFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+import { useLoaderData } from '@remix-run/react'
 import { Anchor, Button, Card, Container, Image, Space, Title } from '@mantine/core'
 import { Link } from 'react-router-dom'
 
+import { getSimulations } from '~/models/simulation.server'
+
+type LoaderData = {
+	simulations: Awaited<ReturnType<typeof getSimulations>>
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+	const simulations = await getSimulations()
+
+	return json<LoaderData>({ simulations })
+}
+
 export default () => {
+	const loaderData = useLoaderData()
+
 	return (
 		<Container>
 			<Card shadow="sm" p="lg">
@@ -19,6 +37,13 @@ export default () => {
 				<Anchor component={Link} to="/simulations" variant="text">
 					<Button>View simulations</Button>
 				</Anchor>
+				{loaderData?.simulations && (
+					<ul>
+						{loaderData.simulations.map((simulation: Simulation) => (
+							<li>{simulation.name}</li>
+						))}
+					</ul>
+				)}
 			</Card>
 		</Container>
 	)
